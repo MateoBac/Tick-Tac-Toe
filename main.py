@@ -119,9 +119,9 @@ class Game:
         elif player < 1:
             player = 1
         self.numplayers = player
-        self.board = [["1", "2", "3"],
-                      ["4", "5", "6"],
-                      ["7", "8", "9"]]
+        self.board = [[" ", " ", " "],
+                      [" ", " ", " "],
+                      [" ", " ", " "]]
         self.comreadboard = [[0, 0, 0],
                              [0, 0, 0],
                              [0, 0, 0]]
@@ -175,7 +175,7 @@ class Game:
     def nextturn(self):
         if self.comreadplayer == 1:
             self.comreadplayer = 2
-            self.player = "$"
+            self.player = "O"
         else:
             self.comreadplayer = 1
             self.player = "X"
@@ -200,16 +200,12 @@ class Game:
         if zeros == 0 and self.win == 0:
             self.win = -1
         return self.win
-    def printboard(self,emty = True):
-        if emty:
-            for i in range(20):
-                print()
-        else:
-            print()
-            print()
-        for i in self.board:
-            print(f"{i[0]} {i[1]} {i[2]}")
-            print()
+    def printboard(self):
+        print(f"{self.board[0][0]}|{self.board[0][1]}|{self.board[0][2]}")
+        print("-#-#-")
+        print(f"{self.board[1][0]}|{self.board[1][1]}|{self.board[1][2]}")
+        print("-#-#-")
+        print(f"{self.board[2][0]}|{self.board[2][1]}|{self.board[2][2]}")
 
     def playcomputer(self):
         move = self.computer.get_best_move(self.comreadboard,self.comreadplayer)
